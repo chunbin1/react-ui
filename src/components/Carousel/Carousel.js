@@ -5,14 +5,16 @@ export default class Carousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentIndex: 0
+      currentIndex: 1,
+      delay:0
     };
-    const {width,height} = this.props
+    const {width,height,children} = this.props
+    this.length = children.length+2
     this.contentStyle = {
       width: width,
       height: height,
       whiteSpace: 'nowrap',
-      overflow: 'hidden',
+      // overflow: 'hidden',
       // position: 'relative'
     };
 
@@ -20,6 +22,10 @@ export default class Carousel extends Component {
     this.setIndex = this.setIndex.bind(this);
     this.rightHandler = this.rightHandler.bind(this);
     this.leftHandler = this.leftHandler.bind(this);
+  }
+
+  componentDidMount(){
+    console.log('didMount');
   }
   rightHandler(e) {
     console.log(e);
@@ -32,7 +38,7 @@ export default class Carousel extends Component {
     this.setIndex(currentIndex - 1);
   }
   setIndex(index) {
-    const len = this.props.children.length;
+    const len = this.props.children.length+2;
     const nextIndex = (index + len) % len;
     console.log(nextIndex);
     this.setState({ currentIndex: nextIndex });
@@ -63,13 +69,18 @@ export default class Carousel extends Component {
     });
   }
 
+  handlerEnd(){
+    console.log('到尽头了');
+  }
+
   render() {
-    const { width, height,delay} = this.props;
-    const { currentIndex } = this.state;
+    const { width, height} = this.props;
+    const { currentIndex,delay } = this.state;
     const offset = -currentIndex * width;
+    console.log(delay);
     const imageRowStyle = {
       marginLeft: offset,
-      transition: delay||"2s"
+      transition:delay
     };
     return (
       <div className="carousel">
@@ -82,7 +93,7 @@ export default class Carousel extends Component {
         <button className="right" onClick={this.rightHandler}>
           {">"}
         </button>
-        <div onClick={this.rightHandler}> 哈</div>
+        
       </div>
     );
   }
