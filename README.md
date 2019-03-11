@@ -31,3 +31,5 @@ requestAnimationFrame((timestamp)=>{})
 ```
 以达到按时间绘制的效果，通过递归调用下一次绘制
 
+todo:有个bug 快速点击 动画过慢的话 会导致页面回滚
+
