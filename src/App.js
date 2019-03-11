@@ -20,7 +20,7 @@ class App extends Component {
             alt={`图${idx}`}
           />
         ))} */}
-        <Carousel width={450} height={300}>
+        <Carousel width={450} height={300} >
           {img.map((val, idx) => (
             <img
               style={{ display: "inline-block" }}

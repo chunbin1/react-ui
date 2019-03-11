@@ -41,7 +41,7 @@ export default class Carousel extends Component {
     let nextIndex = index;
     const len = this.props.children.length;
     const { width } = this.props;
-
+    const delay = this.props.delay||1000
     this.setState({ currentIndex: nextIndex });
 
     const currentOffset = this.state.offset;
@@ -53,14 +53,12 @@ export default class Carousel extends Component {
       if (!start) {
         start = timestamp;
       }
-
       const progress = timestamp - start;
-
       this.setState({
-        offset: currentOffset + (nextOffset - currentOffset) * progress / 100
+        offset: currentOffset + (nextOffset - currentOffset) * progress / delay
       });
 
-      if (progress < 100) {
+      if (progress < delay) {
         requestAnimationFrame(move);
       } else {
         if (nextIndex === 0) {
@@ -72,7 +70,6 @@ export default class Carousel extends Component {
         this.setState({ currentIndex: nextIndex, offset: -nextIndex * width });
       }
     };
-
     requestAnimationFrame(move);
   }
   renderChildren() {
@@ -103,9 +100,7 @@ export default class Carousel extends Component {
 
 
   render() {
-    const { width, height} = this.props;
-    const { currentIndex } = this.state;
-    const offset = -currentIndex * width;
+    const { offset } = this.state;
     const imageRowStyle = {
       marginLeft: offset
     };
