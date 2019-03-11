@@ -6,7 +6,7 @@ export default class Carousel extends Component {
     super(props);
     this.state = {
       currentIndex: 1,
-      offset: -this.props.width
+      offset: -this.props.width,
     };
     const {width,height,children} = this.props
     this.length = children.length+2
@@ -14,8 +14,8 @@ export default class Carousel extends Component {
       width: width,
       height: height,
       whiteSpace: 'nowrap',
-      // overflow: 'hidden',
-      // position: 'relative'
+      overflow: 'hidden',
+      position: 'relative'
     };
 
     this.renderChildren = this.renderChildren.bind(this);
@@ -23,14 +23,9 @@ export default class Carousel extends Component {
     this.rightHandler = this.rightHandler.bind(this);
     this.leftHandler = this.leftHandler.bind(this);
   }
-
-  componentDidMount(){
-    console.log('didMount');
-  }
   rightHandler(e) {
-    console.log(e);
     const { currentIndex } = this.state;
-    console.log(currentIndex);
+    // console.log(currentIndex);
     this.setIndex(currentIndex + 1);
   }
   leftHandler() {
@@ -38,10 +33,11 @@ export default class Carousel extends Component {
     this.setIndex(currentIndex - 1);
   }
   setIndex(index) {
-    let nextIndex = index;
     const len = this.props.children.length;
+    let nextIndex = Math.min(len+1,index);
+    console.log(nextIndex);
     const { width } = this.props;
-    const delay = this.props.delay||1000
+    const delay = this.props.delay||100
     this.setState({ currentIndex: nextIndex });
 
     const currentOffset = this.state.offset;
@@ -63,10 +59,9 @@ export default class Carousel extends Component {
       } else {
         if (nextIndex === 0) {
           nextIndex = len;
-        } else if (nextIndex === len + 1) {
+        } else if (nextIndex >= len + 1) {
           nextIndex = 1;
         }
-
         this.setState({ currentIndex: nextIndex, offset: -nextIndex * width });
       }
     };
