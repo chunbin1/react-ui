@@ -6,7 +6,7 @@ export default class Carousel extends Component {
     super(props);
     this.state = {
       currentIndex: 1,
-      delay:0
+      offset: -this.props.width
     };
     const {width,height,children} = this.props
     this.length = children.length+2
@@ -38,10 +38,42 @@ export default class Carousel extends Component {
     this.setIndex(currentIndex - 1);
   }
   setIndex(index) {
-    const len = this.props.children.length+2;
-    const nextIndex = (index + len) % len;
-    console.log(nextIndex);
+    let nextIndex = index;
+    const len = this.props.children.length;
+    const { width } = this.props;
+
     this.setState({ currentIndex: nextIndex });
+
+    const currentOffset = this.state.offset;
+    const nextOffset = -nextIndex * width;
+
+    let start = null;
+
+    const move = timestamp => {
+      if (!start) {
+        start = timestamp;
+      }
+
+      const progress = timestamp - start;
+
+      this.setState({
+        offset: currentOffset + (nextOffset - currentOffset) * progress / 100
+      });
+
+      if (progress < 100) {
+        requestAnimationFrame(move);
+      } else {
+        if (nextIndex === 0) {
+          nextIndex = len;
+        } else if (nextIndex === len + 1) {
+          nextIndex = 1;
+        }
+
+        this.setState({ currentIndex: nextIndex, offset: -nextIndex * width });
+      }
+    };
+
+    requestAnimationFrame(move);
   }
   renderChildren() {
     const { children, width, height } = this.props;
@@ -69,18 +101,13 @@ export default class Carousel extends Component {
     });
   }
 
-  handlerEnd(){
-    console.log('到尽头了');
-  }
 
   render() {
     const { width, height} = this.props;
-    const { currentIndex,delay } = this.state;
+    const { currentIndex } = this.state;
     const offset = -currentIndex * width;
-    console.log(delay);
     const imageRowStyle = {
-      marginLeft: offset,
-      transition:delay
+      marginLeft: offset
     };
     return (
       <div className="carousel">
