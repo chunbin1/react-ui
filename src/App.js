@@ -10,16 +10,6 @@ class App extends Component {
     return (
       <div>
         <p>无限轮播</p>
-        {/* {img.map((val, idx) => (
-          <img
-            style={{ display: "inline-block" }}
-            width="450"
-            height="300"
-            src={val}
-            key={val}
-            alt={`图${idx}`}
-          />
-        ))} */}
         <Carousel width={450} height={300} >
           {img.map((val, idx) => (
             <img

@@ -25,7 +25,6 @@ export default class Carousel extends Component {
   }
   rightHandler(e) {
     const { currentIndex } = this.state;
-    // console.log(currentIndex);
     this.setIndex(currentIndex + 1);
   }
   leftHandler() {
@@ -35,7 +34,6 @@ export default class Carousel extends Component {
   setIndex(index) {
     const len = this.props.children.length;
     let nextIndex = Math.min(len+1,index);
-    console.log(nextIndex);
     const { width } = this.props;
     const delay = this.props.delay||100
     this.setState({ currentIndex: nextIndex });
