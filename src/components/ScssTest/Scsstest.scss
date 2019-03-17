@@ -1,0 +1,17 @@
+.main{
+  height: 400px;
+  width: 400px;
+  background-color: rgba($color: red, $alpha: 0.8);
+  >.header{
+    width: 400px;
+    height: 100px;
+    background-color: rgba($color:#666,$alpha: 0.8);
+    position: relative;
+    >.left{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%)
+    }
+  }
+  
+}

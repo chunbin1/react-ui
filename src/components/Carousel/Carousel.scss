@@ -1,8 +1,18 @@
 .carousel{
   color: antiquewhite;
-  // .content{
-  //   height: 300px;
-  //   width: 450px;
-  //   overflow: hidden;
-  // }
+  position: relative;
+  .left{  
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+  }
+  .right{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align:center;
+  }
 }

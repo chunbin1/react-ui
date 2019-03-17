@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import Carousel from "./components/Carousel/Carousel";
+import ScssTest from './components/ScssTest/Scsstest'
 import "./App.css";
 
 const requireContext = require.context("./asserts/img", true, /^\.\/.*\.jpg$/);
@@ -20,6 +21,11 @@ class App extends Component {
             />
           ))}
         </Carousel>
+
+        <p>scss的测试</p>
+        <ScssTest>
+          
+        </ScssTest>
       </div>
     );
   }

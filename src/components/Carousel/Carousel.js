@@ -17,7 +17,6 @@ export default class Carousel extends Component {
       overflow: 'hidden',
       position: 'relative'
     };
-
     this.renderChildren = this.renderChildren.bind(this);
     this.setIndex = this.setIndex.bind(this);
     this.rightHandler = this.rightHandler.bind(this);
@@ -98,17 +97,17 @@ export default class Carousel extends Component {
       marginLeft: offset
     };
     return (
-      <div className="carousel">
+      <div className="carousel">      
         <div className="content" style={this.contentStyle}>
-          <div style={imageRowStyle}> {this.renderChildren()}</div>
-        </div>
-        <button className="left" onClick={this.leftHandler}>
+        {}
+        <button className='left' onClick={this.leftHandler}>
           {"<"}
         </button>
-        <button className="right" onClick={this.rightHandler}>
+        <button className='right' onClick={this.rightHandler}>
           {">"}
         </button>
-        
+          <div style={imageRowStyle}> {this.renderChildren()}</div>
+        </div>     
       </div>
     );
   }
