@@ -6,16 +6,16 @@ export default class Carousel extends Component {
     super(props);
     this.state = {
       currentIndex: 1,
-      offset: -this.props.width,
+      offset: -this.props.width
     };
-    const {width,height,children} = this.props
-    this.length = children.length+2
+    const { width, height, children } = this.props;
+    this.length = children.length + 2;
     this.contentStyle = {
       width: width,
       height: height,
-      whiteSpace: 'nowrap',
-      overflow: 'hidden',
-      position: 'relative'
+      whiteSpace: "nowrap",
+      overflow: "hidden",
+      position: "relative"
     };
     this.renderChildren = this.renderChildren.bind(this);
     this.setIndex = this.setIndex.bind(this);
@@ -32,9 +32,9 @@ export default class Carousel extends Component {
   }
   setIndex(index) {
     const len = this.props.children.length;
-    let nextIndex = Math.min(len+1,index);
+    let nextIndex = Math.min(len + 1, index);
     const { width } = this.props;
-    const delay = this.props.delay||100
+    const delay = this.props.delay || 100;
     this.setState({ currentIndex: nextIndex });
 
     const currentOffset = this.state.offset;
@@ -48,7 +48,8 @@ export default class Carousel extends Component {
       }
       const progress = timestamp - start;
       this.setState({
-        offset: currentOffset + (nextOffset - currentOffset) * progress / delay
+        offset:
+          currentOffset + ((nextOffset - currentOffset) * progress) / delay
       });
 
       if (progress < delay) {
@@ -70,12 +71,12 @@ export default class Carousel extends Component {
       width: width,
       height: height
     };
-    const appendedChildren =[
-      children[children.length-1],
+    const appendedChildren = [
+      children[children.length - 1],
       ...children,
       children[0]
-    ]
-    return React.Children.map(appendedChildren, (child,index) => {
+    ];
+    return React.Children.map(appendedChildren, (child, index) => {
       const childClone = React.cloneElement(child, { style: childStyle });
       return (
         <div
@@ -90,24 +91,31 @@ export default class Carousel extends Component {
     });
   }
 
-
   render() {
+    const {width}= this.props
     const { offset } = this.state;
     const imageRowStyle = {
       marginLeft: offset
     };
+    const children = this.props.children 
     return (
-      <div className="carousel">      
+      <div className="carousel" style={{width}}>
         <div className="content" style={this.contentStyle}>
-        {}
-        <button className='left' onClick={this.leftHandler}>
-          {"<"}
-        </button>
-        <button className='right' onClick={this.rightHandler}>
-          {">"}
-        </button>
+          <button className="left" onClick={this.leftHandler}>
+            {"<"}
+          </button>
+          <button className="right" onClick={this.rightHandler}>
+            {">"}
+          </button>
           <div style={imageRowStyle}> {this.renderChildren()}</div>
-        </div>     
+        </div>
+        <div className="switchbox" >
+          {children.map((item, index) => {
+            return (
+              <div onClick={() => this.setIndex(index + 1)} key={index} className='switchBlock' style={{width:this.state.currentIndex===index+1?'30px':'20px',height:'1em'}}></div>
+            );
+          })} 
+        </div>
       </div>
     );
   }

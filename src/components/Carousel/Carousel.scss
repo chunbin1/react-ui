@@ -1,5 +1,4 @@
 .carousel{
-  color: antiquewhite;
   position: relative;
   .left{  
     position: absolute;
@@ -14,5 +13,21 @@
     top: 50%;
     transform: translateY(-50%);
     text-align:center;
+  }
+  .switchbox{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    >.switchBlock{
+      border: 1px solid black;
+      background-color: rgba(255,255,255,0.8);
+      border-radius: 5px;
+      transition: .2s;
+    }
+    >:not(:first-child){
+      margin-left: 2px;
+    }
   }
 }
