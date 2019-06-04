@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import Carousel from "./components/Carousel/Carousel";
-import Tabs from "./components/Tabs/Tabs";
+import Tabs from "./components/Tabs";
 import ScssTest from "./components/ScssTest/Scsstest";
 import "./App.css";
 
@@ -26,7 +26,7 @@ class App extends Component {
         </Carousel>
         <p>Tabs</p>
         <Tabs>
-          <TabPane tab="Tab 1" key="1">
+          <TabPane tab="Tab 1" key="123">
             Content of Tab Pane 1
           </TabPane>
           <TabPane tab="Tab 2" key="2">
