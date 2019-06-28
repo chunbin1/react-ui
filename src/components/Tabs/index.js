@@ -1,4 +1,4 @@
 import Tabs from  './Tabs'
-import newTabs from './newTabs'
+// import newTabs from './newTabs'
 
-export default newTabs;
+export default Tabs;
