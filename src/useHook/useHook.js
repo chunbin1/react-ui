@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+/** 用来点击外部时候触发事件 */
 const useClickOutSide = (ref, fnc) => {
   useEffect(() => {
     const handleClickOutside = e => {
