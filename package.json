@@ -19,6 +19,7 @@
     "css-loader": "1.0.0",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.10.0",
     "eslint": "5.12.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-loader": "2.1.1",
@@ -28,6 +29,7 @@
     "eslint-plugin-react": "7.12.4",
     "file-loader": "2.0.0",
     "fs-extra": "7.0.1",
+    "hooks-test-util": "^1.1.0",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
@@ -73,6 +75,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/user-event": "^4.1.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "gh-pages": "^2.0.1"
   },
   "jest": {

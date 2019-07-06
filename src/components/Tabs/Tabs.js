@@ -25,7 +25,7 @@ export default class Tabs extends Component {
     return React.Children.map(children,(child,index) => {
       const childClone = React.cloneElement(child)
       return (
-        <div className={className({'tab-selected':this.state.index===index})} key={index} index={index} onClick={this.clickTabs} style={headerStyle}>
+        <div className={className('tab-item',{'tab-selected':this.state.index===index,})} key={index} index={index} onClick={this.clickTabs} style={headerStyle}>
           {childClone.props.tab}
         </div>
       )
